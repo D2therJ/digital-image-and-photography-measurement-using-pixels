@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"
+    style="--body:#eee; --header:#f3f3f3; --page:#fff; --text:black; --text-disabled:gray; --link:rgb(0,0,238); --footer:#aaa; --footer-text:#f3f3f3; --footer-link:#363e68;">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Measure in photo online</title>
+    <meta name="description" lang="en" content="Online photo measurements">
+    <meta name="keywords" lang="en"
+        content="measure photo image picture map scale ruler dimension length size online meter centimeter kilometer millimeter inches foot feet miles">
+    <style></style>
+    <style></style>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-100">
+    <div id="main" role="main" class="md:w-2/3 w-full p-1 md:p-0 mx-auto">
+        <div id="content" class=" grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+            <div class="bg-white p-2">
+                <h1 class="text-2xl font-bold">Photo measure</h1>
+                <p class="text-sm px-4 mt-2">Simple, relative length/distance measurements in photo / image files,
+                    <b>based on a known reference
+                        object</b> size.<br>Estimate dimensions in a picture right in your browser (no software
+                    download, no data is uploaded to the server).<br>Technical drawings such as floor plans are ideal,
+                    because they contain a scale already.<br>However: <b>No Warranty</b> (please don't blame me if e.g.
+                    your kitchen furniture don't fit...)<br><br>Note that this method is only good for rough
+                    <b>estimates</b> in photos, due to camera perspective (and lens imperfections).<br>It's best if the
+                    reference object and whatever you want to measure are near each other and at the <b>same
+                        distance</b> from the camera when you take the picture.</p>
+
+
+            </div>
+            <div class="bg-white p-2">
+                <h1 class="text-lg font-bold">Instructions:</h1>
+                <ol class="list-decimal px-4 text-sm">
+                    <li><input class="loadbutton" type="button" value="Open ..."> or drag&amp;drop an image anywhere
+                        onto this page. The picture will be scaled to fit the page width.</li>
+                    <li>Create the reference dimension (red) by click-and-dragging the first measurement line onto an
+                        object with known size.</li>
+                    <li>Create measurement lines (green) by click-and-dragging (remove them by clicking on the 'remove'
+                        link in the measurement table below).</li>
+                    <li>Enter the real-world length of the first dimension as reference - the other measurements will be
+                        scaled accordingly.</li>
+                </ol>
+                <h1 class="text-lg font-bold mt-3">Hints:</h1>
+                <ul class=" list-disc px-4 text-sm">
+                    <li>You can enter a unit, it'll show up in the results (it does not affect the measurements).</li>
+                    <li>Leave empty if you want to measure pixels (pixel measurements will be off for scaled images).
+                    </li>
+                    <li>Hold (or click to toggle) <kbd data-key="Control">CTRL</kbd> while dragging to "snap"
+                        horizontal/vertical lines</li>
+                    <li>Press (or click) <kbd data-key="Escape">ESC</kbd> to abort drawing the current line or clear all
+                        measurements. Hit it twice within 1 second to clear the image.</li>
+                    <li>Hit (or click) <kbd data-key="Delete">DEL</kbd> to remove the last measurement</li>
+                </ul>
+            </div>
+            <div class="bg-white p-2" id="fullscreen">
+                <div id="container">
+                    <div class="grid grid-cols-3 gap-6 mb-2">
+                        <div class="col-span-3 sm:col-span-2">
+                            <div class="mt-1 flex rounded-md shadow-sm">
+                                <span
+                                    class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                    Known Dimension:</span>
+                                <input name="ref" id="ref" type="number" value="1" step="0.01"
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                                    placeholder="1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="fileinfo"></div>
+                    <input class="loadbutton" type="button" value="Open ...">
+                    Filename:<div id="filename"></div>
+                    <br>
+                    <button class="control-buttons" id="rccw" disabled="">↶ Rotate CCW</button>
+                    <button class="control-buttons" id="rcw" disabled="">↷ Rotate CW</button>
+                    <button class="control-buttons" id="expand">expand</button>
+                    <canvas id="canvas" width="608">Canvas not supported .. time to update your browser</canvas>
+                    <kbd data-key="Control">CTRL</kbd>
+                    <kbd data-key="Escape">ESC</kbd>
+                    <kbd data-key="Delete">DEL</kbd>
+                    <div id="info">x=- y=- -</div>
+                    <input id="save" type="button" value="Save as ...">
+                    <p class="text-gray-400 text-sm">(or right-click on image to "Save Image As ...")</p>
+                </div>
+            </div>
+            <div class="bg-white p-2">
+                <h2>Measurements</h2>
+                <p>Table:</p>
+                <div id="output">No measurements yet.</div>
+                <p>CSV (tab as delimiter):</p>
+                <pre><code id="outputcsv">No measurements yet.</code></pre><input id="csv_copy" class="control-buttons"
+                    type="button" value="Copy to clipboard"> <input id="csv_save" type="button" value="Save as ..."
+                    class="control-buttons">
+            </div>
+        </div>
+        <script src="app.js"></script>
+    </div>
+<center><p><a href="https://github.com/D2therJ" target="_blank" rel="noopener noreferrer">github</a></p></center>
+</body>
+
+</html>
